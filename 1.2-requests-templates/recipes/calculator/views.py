@@ -1,3 +1,4 @@
+from django.http import HttpResponse
 from django.shortcuts import render
 
 DATA = {
@@ -28,3 +29,21 @@ DATA = {
 #     'ингредиент2': количество2,
 #   }
 # }
+
+
+def recipe_view(request, param):
+    amount = int(request.GET.get("servings", 1)) if request.GET.get("servings").isdigit() else 1
+    data = DATA.get(f"{param}")
+
+    recipe = {}
+    if data is not None:
+        recipe = {item: round(quantity * amount, 2) for item, quantity in data.items()}
+
+    # if data is None:
+    #     return HttpResponse(f'No recipe for {param}')
+
+    context = {
+        'recipe': recipe
+    }
+
+    return render(request, 'calculator/index.html', context)
