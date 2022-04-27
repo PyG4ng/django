@@ -16,5 +16,12 @@
             </div>
             {% endfor %}
         </div>
+        {% if prev_book_obj %}
+        <a style="padding-right:10px;" href="/books/{{prev_book_obj.pub_date|date:'Y-m-d'}}">< {{prev_book_obj.pub_date|date:'Y-m-d'}}</a>
+        {% endif %}
+        {% if next_book_obj %}
+        <a href="/books/{{next_book_obj.pub_date|date:'Y-m-d'}}">{{next_book_obj.pub_date|date:'Y-m-d'}} ></a>
+        {% endif %}
+
     </div>
 {% endblock %}
