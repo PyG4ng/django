@@ -16,7 +16,12 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
+from measurement.views import index_view
+
 urlpatterns = [
+    path('', index_view, name='index'),
     path('admin/', admin.site.urls),
-    path('api/', include('measurement.urls')),  # подключаем маршруты из приложения measurement
+    path('api/', include('measurement.urls'), name='api_included'),
+    path('__debug__/', include('debug_toolbar.urls')),
 ]
+
