@@ -9,7 +9,6 @@ from measurement.serializers import SensorSerializer, MeasurementSerializer, Sen
 
 
 def index_view(request):
-    # return redirect(reverse('api_included'))
     return redirect(reverse('api'))
 
 
