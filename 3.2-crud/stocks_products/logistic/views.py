@@ -18,3 +18,5 @@ class StockViewSet(ModelViewSet):
     serializer_class = StockSerializer
     # при необходимости добавьте параметры фильтрации
     filterset_fields = ['products']
+    filter_backends = [SearchFilter]
+    search_fields = ['products__title', 'products__description']
