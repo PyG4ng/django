@@ -5,6 +5,10 @@ from django.db import models
 class Product(models.Model):
     title = models.CharField(max_length=60, unique=True)
     description = models.TextField(null=True, blank=True)
+    # positions = ...
+
+    def __str__(self):
+        return f'{self.title}'
 
 
 class Stock(models.Model):
@@ -14,6 +18,10 @@ class Stock(models.Model):
         through='StockProduct',
         related_name='stocks',
     )
+    # positions = ...
+
+    def __str__(self):
+        return f'{self.address}'
 
 
 class StockProduct(models.Model):
